@@ -1,0 +1,45 @@
+<html>
+    <head></head>
+
+    <body>
+        {{! title for the page }}
+        <div id = 'heading'>
+            <h1> Blogs Forever!! </h1>
+        </div>
+
+        {{! creating the individual posts with a form}}
+        <div id = 'creating'>
+            <form method = 'POST' action = '/create-post'>
+                <input type = 'text' placeholder = 'Title' name = 'title' /> <br><br>
+                {{! textarea creates a bigger box for them to put in their message}}
+                <textarea rows = '6' cols = '30' placeholder = 'Body' name = 'body'></textarea>
+                <button>Save</button>
+            </form>
+        </div>
+
+        <div id = 'postPostPosts'>
+            <ul>
+            {{#allPosts}}
+
+                <li>
+                    <form method = 'POST' action = '/delete-post'>
+                    <h2>{{title}}</h2>
+                    <label>{{body}}</label><br>
+                    <label>Date Created: {{date_created}}</label><br>
+                    <label>Last Updated: {{date_updated}}</label><br>
+                    <label>Published: {{is_published}}</label><br>
+                    {{! hidden allows the post Id info to be there but not visible to user}}
+                    <input type = 'hidden' value = {{post_id}} name = 'postId' />
+                    <button>Delete Post</button>
+                    </form>
+                </li>
+
+            {{/allPosts}}
+            </ul>
+
+        </div>
+    
+    
+    </body>
+
+</html>
